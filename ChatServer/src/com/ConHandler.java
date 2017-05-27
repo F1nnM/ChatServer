@@ -33,6 +33,7 @@ public class ConHandler implements Runnable {
 	@Override
 	public void run() {
 		ToWrite = new ArrayList<String>();
+		
 		try {
 			run = true;
 			in = new Scanner(socket.getInputStream());

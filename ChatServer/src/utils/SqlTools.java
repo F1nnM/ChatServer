@@ -51,9 +51,9 @@ public class SqlTools {
 	}
 	
 	public static boolean checkOnline(int ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
-		ResultSet rs = query("SELECT state FROM test.state WHERE ID='"+ID+"';");
+		ResultSet rs = query("SELECT ip FROM test.ips WHERE ID='"+ID+"';");
 		rs.first();
-		return (rs.getString("state").equals("offline"));
+		return (!(rs.getString("ip")==null));
 	}
 
 }

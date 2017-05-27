@@ -11,7 +11,7 @@ public class Main {
 		SqlTools.c();
 		Thread t = new Thread(new com.Main());
 		t.start();
-		
+		System.out.println("Started!");
 	}
 
 }
