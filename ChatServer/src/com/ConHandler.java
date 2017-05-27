@@ -4,6 +4,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import utils.SqlTools;
+
 public class ConHandler implements Runnable {
 
 	private Socket socket;
@@ -41,8 +43,8 @@ public class ConHandler implements Runnable {
 					out.write(ToWrite.get(0));
 				if ((input = in.nextLine()) != null) {
 					String[] parts = input.split("-");
-					if (!(Main.sendTo(parts[0], parts[1]))) {
-						send("Invalid IP");
+					if(SqlTools.checkOnline(Integer.getInteger(parts[1]))){
+						Main.sendTo(parts[0], parts[1]);
 					}
 
 				}
