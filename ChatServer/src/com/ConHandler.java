@@ -4,8 +4,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import main.Main;
-
 public class ConHandler implements Runnable {
 
 	private Socket socket;

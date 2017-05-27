@@ -6,15 +6,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-
-import org.apache.commons.lang3.StringUtils;
-
-import datatypes.Message;
-import datatypes.Type;
-import datatypes.User;
-import files.Logger;
 
 public class SqlTools {
 
@@ -52,25 +43,17 @@ public class SqlTools {
 		stmt.executeUpdate(cmd);
 	}
 
-	public static User getUser(int id)
-			throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		// c();
-		ResultSet rs = query("SELECT username, ID, email FROM test.users WHERE ID = '" + id + "';");
-		rs.first();
-		User usr = new User();
-		usr.setEmail(rs.getString("email"));
-		usr.setId(id);
-		usr.setName(rs.getString("username"));
-		rs = query("SELECT ip from test.ips WHERE ID = '" + usr.getId() + "';");
-		rs.first();
-		usr.setIp(rs.getString("ip"));
-		// d();
-		return usr;
-	}
+
 
 	public static String getIp(int user_ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		ResultSet rs = query("SELECT ip FROM test.ips WHERE ID='"+user_ID+"';");
 		return rs.getString("ip");
+	}
+	
+	public static boolean checkOnline(int ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+		ResultSet rs = query("SELECT state FROM test.state WHERE ID='"+ID+"';");
+		rs.first();
+		return (rs.getString("state").equals("offline"));
 	}
 
 }
