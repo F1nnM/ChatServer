@@ -49,8 +49,9 @@ public class ConHandler implements Runnable {
 					if ((input = in.nextLine()) != null) {
 						System.out.println(input);
 						String[] parts = input.split("-");
-						if (SqlTools.checkOnline(Integer.getInteger(parts[1]))) {
-							Main.sendTo(parts[0], Integer.getInteger(parts[1]));
+						int id = Integer.parseInt(parts[1]);
+						if (SqlTools.checkOnline(id)) {
+							Main.sendTo(parts[0], id);
 						}
 
 					}
