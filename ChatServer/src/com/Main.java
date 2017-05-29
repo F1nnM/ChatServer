@@ -2,7 +2,10 @@ package com;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import utils.SqlTools;
 
 public class Main implements Runnable {
 
@@ -29,11 +32,13 @@ public class Main implements Runnable {
 		}
 	}
 
-	public static boolean sendTo(String msg, String IP) {
+	public static boolean sendTo(String msg, int ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		for (ConHandler con : cons) {
-			if (con.getIP() == IP)
+			System.out.println(con.getIP());
+			System.out.println(SqlTools.getIp(ID));
+			if (con.getIP() == SqlTools.getIp(ID))
 				con.send(msg);
-				System.out.println(msg+"  "+IP);
+				System.out.println(msg+"  "+SqlTools.getIp(ID));
 			return true;
 		}
 		return false;

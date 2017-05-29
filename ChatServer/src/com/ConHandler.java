@@ -1,4 +1,5 @@
 package com;
+
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -33,25 +34,31 @@ public class ConHandler implements Runnable {
 	@Override
 	public void run() {
 		ToWrite = new ArrayList<String>();
-		
 		try {
 			run = true;
 			in = new Scanner(socket.getInputStream());
 			out = new PrintWriter(socket.getOutputStream(), true);
 			String input;
 			while (run) {
-				if (ToWrite.size() > 0)
+				if (ToWrite.size() > 0) {
 					out.write(ToWrite.get(0));
-				if ((input = in.nextLine()) != null) {
-					System.out.println(input);
-					String[] parts = input.split("-");
-					if(SqlTools.checkOnline(Integer.getInteger(parts[1]))){
-						Main.sendTo(parts[0], parts[1]);
-					}
+					System.out.println(ToWrite.get(0));
+					ToWrite.remove(0);
+				}
+				if (in.hasNext()) {
+					if ((input = in.nextLine()) != null) {
+						System.out.println(input);
+						String[] parts = input.split("-");
+						if (SqlTools.checkOnline(Integer.getInteger(parts[1]))) {
+							Main.sendTo(parts[0], Integer.getInteger(parts[1]));
+						}
 
+					}
+					System.out.println("zeux");
 				}
 			}
 		} catch (Exception e) {
+			System.out.println("4");
 			e.printStackTrace();
 		}
 	}
