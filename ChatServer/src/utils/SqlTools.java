@@ -47,6 +47,7 @@ public class SqlTools {
 
 	public static String getIp(int user_ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		ResultSet rs = query("SELECT ip FROM test.ips WHERE ID='"+user_ID+"';");
+		rs.first();
 		return rs.getString("ip");
 	}
 	
