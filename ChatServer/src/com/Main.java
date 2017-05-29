@@ -33,6 +33,7 @@ public class Main implements Runnable {
 		for (ConHandler con : cons) {
 			if (con.getIP() == IP)
 				con.send(msg);
+				System.out.println(msg+"  "+IP);
 			return true;
 		}
 		return false;

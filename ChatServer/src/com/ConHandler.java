@@ -43,6 +43,7 @@ public class ConHandler implements Runnable {
 				if (ToWrite.size() > 0)
 					out.write(ToWrite.get(0));
 				if ((input = in.nextLine()) != null) {
+					System.out.println(input);
 					String[] parts = input.split("-");
 					if(SqlTools.checkOnline(Integer.getInteger(parts[1]))){
 						Main.sendTo(parts[0], parts[1]);
