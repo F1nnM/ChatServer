@@ -17,7 +17,7 @@ public class Main implements Runnable {
 	public void run() {
 		ServerSocket ss;
 		try {
-			ss = new ServerSocket(50000);
+			ss = new ServerSocket(23456);
 			cons = new ArrayList<ConHandler>();
 			while (true) {
 				try {
