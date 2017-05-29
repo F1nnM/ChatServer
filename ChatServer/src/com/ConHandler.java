@@ -57,6 +57,9 @@ public class ConHandler implements Runnable {
 					}
 					System.out.println("zeux");
 				}
+				if (!(socket.isConnected()&&socket.isClosed())){
+					stop();
+				}
 			}
 		} catch (Exception e) {
 			System.out.println("4");
