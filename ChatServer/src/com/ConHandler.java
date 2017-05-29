@@ -62,7 +62,6 @@ public class ConHandler implements Runnable {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("4");
 			e.printStackTrace();
 		}
 	}

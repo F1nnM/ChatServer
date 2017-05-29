@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.mysql.jdbc.StringUtils;
+
 import utils.SqlTools;
 
 public class Main implements Runnable {
@@ -34,11 +36,11 @@ public class Main implements Runnable {
 
 	public static boolean sendTo(String msg, int ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		for (ConHandler con : cons) {
-			System.out.println(con.getIP());
+			String conIP = con.getIP().substring(1).split(":")[0];
+			System.out.println(conIP);
 			System.out.println(SqlTools.getIp(ID));
-			if (con.getIP() == SqlTools.getIp(ID))
+			if (conIP == SqlTools.getIp(ID))
 				con.send(msg);
-				System.out.println(msg+"  "+SqlTools.getIp(ID));
 			return true;
 		}
 		return false;
