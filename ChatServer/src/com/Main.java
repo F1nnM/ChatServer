@@ -39,9 +39,11 @@ public class Main implements Runnable {
 			String conIP = con.getIP().substring(1).split(":")[0];
 			System.out.println(conIP);
 			System.out.println(SqlTools.getIp(ID));
-			if (conIP == SqlTools.getIp(ID))
+			if (conIP == SqlTools.getIp(ID)|| conIP.contains("127.0.0.1")){
+				System.out.println("joa");
 				con.send(msg);
-			return true;
+				return true;
+			}
 		}
 		return false;
 	}

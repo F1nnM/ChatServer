@@ -38,16 +38,15 @@ public class ConHandler implements Runnable {
 			run = true;
 			in = new Scanner(socket.getInputStream());
 			out = new PrintWriter(socket.getOutputStream(), true);
+			socket.setKeepAlive(true);
 			String input;
 			while (run) {
 				if (ToWrite.size() > 0) {
 					out.write(ToWrite.get(0));
-					System.out.println(ToWrite.get(0));
 					ToWrite.remove(0);
 				}
 				if (in.hasNext()) {
 					if ((input = in.nextLine()) != null) {
-						System.out.println(input);
 						String[] parts = input.split("-");
 						int id = Integer.parseInt(parts[1]);
 						if (SqlTools.checkOnline(id)) {
@@ -55,10 +54,7 @@ public class ConHandler implements Runnable {
 						}
 
 					}
-					System.out.println("zeux");
-				}
-				if (!(socket.isConnected()&&socket.isClosed())){
-					stop();
+					
 				}
 			}
 		} catch (Exception e) {
