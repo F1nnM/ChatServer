@@ -42,7 +42,7 @@ public class ConHandler implements Runnable {
 			String input;
 			while (run) {
 				if (ToWrite.size() > 0) {
-					out.write(ToWrite.get(0));
+					out.println(ToWrite.get(0));
 					ToWrite.remove(0);
 				}
 				if (in.hasNext()) {

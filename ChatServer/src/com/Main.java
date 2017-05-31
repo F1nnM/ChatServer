@@ -36,10 +36,10 @@ public class Main implements Runnable {
 
 	public static boolean sendTo(String msg, int ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		for (ConHandler con : cons) {
-			String conIP = con.getIP().substring(1).split(":")[0];
+			String conIP = con.getIP();
 			System.out.println(conIP);
 			System.out.println(SqlTools.getIp(ID));
-			if (conIP == SqlTools.getIp(ID)|| conIP.contains("127.0.0.1")){
+			if (conIP == SqlTools.getIp(ID)){
 				System.out.println("joa");
 				con.send(msg);
 				return true;
