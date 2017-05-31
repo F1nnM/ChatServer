@@ -35,15 +35,17 @@ public class Main implements Runnable {
 	}
 
 	public static boolean sendTo(String msg, int ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		int i = 0;
 		for (ConHandler con : cons) {
 			String conIP = con.getIP();
-			System.out.println(conIP);
-			System.out.println(SqlTools.getIp(ID));
-			if (conIP == SqlTools.getIp(ID)){
+			System.out.println(i+" "+conIP);
+			System.out.println(i+" "+SqlTools.getIp(ID));
+			if (conIP.equals(SqlTools.getIp(ID))){
 				System.out.println("joa");
 				con.send(msg);
 				return true;
 			}
+			i++;
 		}
 		return false;
 	}
