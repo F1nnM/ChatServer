@@ -13,7 +13,7 @@ public class ConHandler implements Runnable {
 	private boolean run = false;
 	private Scanner in;
 	private PrintWriter out;
-	private ArrayList<String> ToWrite;
+	private static ArrayList<String> ToWrite;
 
 	public ConHandler(Socket socket) {
 		this.socket = socket;
@@ -48,7 +48,7 @@ public class ConHandler implements Runnable {
 					out.println("");
 				}
 				if (in.hasNext()) {
-					if ((input = in.nextLine()) != null) {
+					if (!(input = in.nextLine()).equals("")){
 						String[] parts = input.split("-");
 						int id = Integer.parseInt(parts[1]);
 						if (SqlTools.checkOnline(id)) {
