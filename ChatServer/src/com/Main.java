@@ -1,6 +1,7 @@
 package com;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import utils.SqlTools;
 
 public class Main implements Runnable {
 
-	private static ArrayList<ConHandler> cons;
+	static ArrayList<ConHandler> cons;
 
 	@Override
 	public void run() {
@@ -49,4 +50,5 @@ public class Main implements Runnable {
 		}
 		return false;
 	}
+	
 }

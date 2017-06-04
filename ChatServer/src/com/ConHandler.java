@@ -1,6 +1,7 @@
 package com;
 
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -58,10 +59,15 @@ public class ConHandler implements Runnable {
 					}
 					
 				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public InetAddress getInetAddress(){
+		return socket.getInetAddress();
 	}
 
 }
