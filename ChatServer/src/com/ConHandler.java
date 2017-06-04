@@ -44,6 +44,8 @@ public class ConHandler implements Runnable {
 				if (ToWrite.size() > 0) {
 					out.println(ToWrite.get(0));
 					ToWrite.remove(0);
+				}else{
+					out.println("");
 				}
 				if (in.hasNext()) {
 					if ((input = in.nextLine()) != null) {
