@@ -56,5 +56,10 @@ public class SqlTools {
 		rs.first();
 		return (!(rs.getString("ip")==null));
 	}
+	
+	public static boolean checkOnline(String ip) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+		ResultSet rs = query("SELECT ip FROM test.ips WHERE ip='"+ip+"';");
+		return (rs.isBeforeFirst());
+	}
 
 }

@@ -1,6 +1,10 @@
 package com;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import utils.SqlTools;
 
 public class Checker implements Runnable {
 
@@ -8,16 +12,20 @@ public class Checker implements Runnable {
 	public void run() {
 		try {
 			while (true) {
+				Thread.sleep(10000);
 				System.out.println("Checking..");
+				ArrayList<ConHandler> conTmp= new ArrayList<>();
 				for (ConHandler con : Main.cons) {
-					if (!(con.getInetAddress().isReachable(3000))) {
+					if (!(SqlTools.checkOnline(con.getIP()))) {
 						con.stop();
 						System.out.println("disconnected: "+con.getIP());
+					}else{
+						conTmp.add(con);
 					}
 				}
-				Thread.sleep(10000);
+				Main.cons = conTmp;
 			}
-		} catch (IOException | InterruptedException e) {
+		} catch (InterruptedException | InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 

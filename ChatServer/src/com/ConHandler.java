@@ -61,6 +61,7 @@ public class ConHandler implements Runnable {
 				}
 
 			}
+			System.out.println("Stopped: "+ getIP());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
