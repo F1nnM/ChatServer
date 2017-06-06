@@ -8,9 +8,11 @@ public class Checker implements Runnable {
 	public void run() {
 		try {
 			while (true) {
+				System.out.println("Checking..");
 				for (ConHandler con : Main.cons) {
 					if (!(con.getInetAddress().isReachable(3000))) {
 						con.stop();
+						System.out.println("disconnected: "+con.getIP());
 					}
 				}
 				Thread.sleep(10000);
