@@ -14,7 +14,7 @@ public class ConHandler implements Runnable {
 	private boolean run = false;
 	private Scanner in;
 	private PrintWriter out;
-	private static ArrayList<String> ToWrite;
+	private static boolean hasNew = false;
 
 	public ConHandler(Socket socket) {
 		this.socket = socket;
@@ -28,13 +28,12 @@ public class ConHandler implements Runnable {
 		run = false;
 	}
 
-	public void send(String str) {
-		ToWrite.add(str);
+	public void newMessage() {
+		hasNew = true;
 	}
 
 	@Override
 	public void run() {
-		ToWrite = new ArrayList<String>();
 		try {
 			run = true;
 			in = new Scanner(socket.getInputStream());
@@ -42,32 +41,19 @@ public class ConHandler implements Runnable {
 			socket.setKeepAlive(true);
 			String input;
 			while (run) {
-				if (ToWrite.size() > 0) {
-					out.println(ToWrite.get(0));
-					ToWrite.remove(0);
-				}else{
-					out.println("");
-				}
-				if (in.hasNext()) {
-					if (!(input = in.nextLine()).equals("")){
-						String[] parts = input.split("-");
-						int id = Integer.parseInt(parts[1]);
-						if (SqlTools.checkOnline(id)) {
-							Main.sendTo(parts[0], id);
-						}
-
-					}
-					
+				out.print(hasNew);
+				if(in.hasNextInt()){
+					Main.newMessage(in.nextInt());
 				}
 
 			}
-			System.out.println("Stopped: "+ getIP());
+			System.out.println("Stopped: " + getIP());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public InetAddress getInetAddress(){
+
+	public InetAddress getInetAddress() {
 		return socket.getInetAddress();
 	}
 
