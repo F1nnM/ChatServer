@@ -37,6 +37,7 @@ public class Main implements Runnable {
 
 	public static void newMessage(int ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		int i = 0;
+		System.out.println("Notify: "+ID);
 		for (ConHandler con : cons) {
 			String conIP = con.getIP();
 			System.out.println(i+" "+conIP);
