@@ -39,9 +39,11 @@ public class ConHandler implements Runnable {
 
 			socket.setKeepAlive(true);
 			while (run) {
-				System.out.println(hasNew);
-				out.write(hasNew);
-				hasNew = 0;
+				if (hasNew==1){
+					out.write(hasNew);
+					hasNew = 0;
+					out.flush();
+				}
 				if (in.available() > 0) {
 					Main.newMessage(in.read());
 				}
