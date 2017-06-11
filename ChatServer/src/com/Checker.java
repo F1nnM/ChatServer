@@ -1,6 +1,5 @@
 package com;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -17,7 +16,7 @@ public class Checker implements Runnable {
 				for (ConHandler con : Main.cons) {
 					if (!(SqlTools.checkOnline(con.getID()))) {
 						con.stop();
-						System.out.println("disconnected: "+con.getID());
+						Main.out("disconnected: "+con.getID());
 					}else{
 						conTmp.add(con);
 					}

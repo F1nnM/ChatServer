@@ -42,16 +42,16 @@ public class ConHandler implements Runnable {
 			socket.setKeepAlive(true);
 			
 			while (in.available()<1) {
-				System.out.println("waiting");
+				Main.out("waiting");
 			}
 			addr = new InetSocketAddress(socket.getInetAddress(), socket.getPort());
 			id = in.read();
 			SqlTools.setIP(id, addr.toString());
-			System.out.println(addr.toString());
-			System.out.println(id);
+			Main.out(addr.toString());
+			Main.out(id);
 			
 			while (run) {
-				System.out.println("now in main loop: "+getAddress()+"  "+getID());
+				Main.out("now in main loop: "+addr+"  "+id);
 				System.out.flush();
 				if (hasNew==1){
 					out.write(hasNew);
@@ -63,7 +63,7 @@ public class ConHandler implements Runnable {
 				}
 				Thread.sleep(500);
 			}
-			System.out.println("Stopped: " + getAddress().toString());
+			Main.out("Stopped: " + getAddress().toString());
 			SqlTools.setIP(id, null);
 			
 		} catch (Exception e) {

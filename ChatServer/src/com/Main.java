@@ -51,4 +51,9 @@ public class Main implements Runnable {
 		}		
 	}
 	
+	public static void out(Object msg){
+		System.out.println(msg);
+	}
+	
+	
 }
