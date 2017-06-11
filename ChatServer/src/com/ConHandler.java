@@ -2,12 +2,8 @@ package com;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
-import java.util.ArrayList;
-
 import utils.SqlTools;
 
 public class ConHandler implements Runnable {
@@ -46,14 +42,17 @@ public class ConHandler implements Runnable {
 			socket.setKeepAlive(true);
 			
 			while (in.available()<1) {
-				
+				System.out.println("waiting");
 			}
 			addr = new InetSocketAddress(socket.getInetAddress(), socket.getPort());
 			id = in.read();
 			SqlTools.setIP(id, addr.toString());
 			System.out.println(addr.toString());
+			System.out.println(id);
 			
 			while (run) {
+				System.out.println("now in main loop: "+getAddress()+"  "+getID());
+				System.out.flush();
 				if (hasNew==1){
 					out.write(hasNew);
 					hasNew = 0;
@@ -62,7 +61,7 @@ public class ConHandler implements Runnable {
 				if (in.available() > 0) {
 					Main.newMessage(in.read());
 				}
-
+				Thread.sleep(500);
 			}
 			System.out.println("Stopped: " + getAddress().toString());
 			SqlTools.setIP(id, null);

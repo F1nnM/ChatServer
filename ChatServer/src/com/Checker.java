@@ -13,7 +13,6 @@ public class Checker implements Runnable {
 		try {
 			while (true) {
 				Thread.sleep(10000);
-				System.out.println("Checking..");
 				ArrayList<ConHandler> conTmp= new ArrayList<>();
 				for (ConHandler con : Main.cons) {
 					if (!(SqlTools.checkOnline(con.getID()))) {
