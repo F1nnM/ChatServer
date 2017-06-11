@@ -25,7 +25,6 @@ public class Main implements Runnable {
 					ConHandler con = new ConHandler(ss.accept());
 					cons.add(con);
 					new Thread(con).start();
-					System.out.println("Connected to: " + con.getIP());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -38,7 +37,7 @@ public class Main implements Runnable {
 	public static void newMessage(int ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		int i = 0;
 		for (ConHandler con : cons) {
-			if (con.getIP().equals(SqlTools.getIp(ID))){
+			if (con.getAddress().toString().equals(SqlTools.getIp(ID))){
 				con.newMessage();
 				break;
 			}

@@ -56,10 +56,29 @@ public class SqlTools {
 		rs.first();
 		return (!(rs.getString("ip")==null));
 	}
+
 	
-	public static boolean checkOnline(String ip) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
-		ResultSet rs = query("SELECT ip FROM test.ips WHERE ip='"+ip+"';");
-		return (rs.isBeforeFirst());
+
+	/**
+	 * Saves the IP of a specific user in the database
+	 * 
+	 * @param user_ID
+	 *            The user (ID) to set the IP
+	 * @param IP
+	 *            The IP to set
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 * @author Finn
+	 */
+	public static void setIP(int user_ID, String IP)
+			throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		if (IP == null) {
+			update("UPDATE test.ips SET ip=null WHERE ID='" + user_ID + "';");
+		} else {
+			update("UPDATE test.ips SET ip='" + IP + "' WHERE ID='" + user_ID + "';");
+		}
 	}
 
 }
