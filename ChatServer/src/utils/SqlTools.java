@@ -47,14 +47,14 @@ public class SqlTools {
 
 	public static String getIp(int user_ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		ResultSet rs = query("SELECT ip FROM test.ips WHERE ID='"+user_ID+"';");
-		rs.first();
-		return rs.getString("ip");
+		if(rs.first())return rs.getString("ip");
+		return "";
 	}
 	
-	public static boolean checkOnline(int ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
-		ResultSet rs = query("SELECT ip FROM test.ips WHERE ID='"+ID+"';");
-		rs.first();
-		return (!(rs.getString("ip")==null));
+	public static boolean checkOnline(String IP) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+		ResultSet rs = query("SELECT ip FROM test.ips WHERE Ip='"+IP+"';");
+		if(rs.first())return (!(rs.getString("ip")==null));
+		return false;
 	}
 
 	

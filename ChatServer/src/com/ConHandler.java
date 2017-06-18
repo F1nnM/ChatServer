@@ -2,8 +2,9 @@ package com;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
+
 import utils.SqlTools;
 
 public class ConHandler implements Runnable {
@@ -13,8 +14,6 @@ public class ConHandler implements Runnable {
 	private BufferedInputStream in;
 	private BufferedOutputStream out;
 	private static int hasNew = 0;
-	private static InetSocketAddress addr;
-	private static int id;
 
 	public ConHandler(Socket socket) {
 		this.socket = socket;
@@ -26,10 +25,6 @@ public class ConHandler implements Runnable {
 
 	public void newMessage() {
 		hasNew = 1;
-	}
-	
-	public int getID(){
-		return id;
 	}
 
 	@Override
@@ -44,14 +39,10 @@ public class ConHandler implements Runnable {
 			while (in.available()<1) {
 				Main.out("waiting");
 			}
-			addr = new InetSocketAddress(socket.getInetAddress(), socket.getPort());
-			id = in.read();
-			SqlTools.setIP(id, addr.toString());
-			Main.out(addr.toString());
-			Main.out(id);
+			SqlTools.setIP(in.read(), socket.getRemoteSocketAddress().toString());
+			Main.out(socket.getRemoteSocketAddress());
 			
 			while (run) {
-				Main.out("now in main loop: "+addr+"  "+id);
 				System.out.flush();
 				if (hasNew==1){
 					out.write(hasNew);
@@ -64,15 +55,14 @@ public class ConHandler implements Runnable {
 				Thread.sleep(500);
 			}
 			Main.out("Stopped: " + getAddress().toString());
-			SqlTools.setIP(id, null);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public InetSocketAddress getAddress() {
-		return addr;
+	public SocketAddress getAddress() {
+		return socket.getRemoteSocketAddress();
 	}
 
 }

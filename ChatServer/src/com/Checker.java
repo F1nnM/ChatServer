@@ -12,11 +12,12 @@ public class Checker implements Runnable {
 		try {
 			while (true) {
 				Thread.sleep(10000);
+				Main.out("Checking..");
 				ArrayList<ConHandler> conTmp= new ArrayList<>();
 				for (ConHandler con : Main.cons) {
-					if (!(SqlTools.checkOnline(con.getID()))) {
+					if (!(SqlTools.checkOnline(con.getAddress().toString()))) {
 						con.stop();
-						Main.out("disconnected: "+con.getID());
+						Main.out("disconnected: "+con.getAddress().toString());
 					}else{
 						conTmp.add(con);
 					}
