@@ -25,6 +25,7 @@ public class ConHandler implements Runnable {
 
 	public void newMessage() {
 		hasNew = 1;
+		System.out.println("hasNew");
 	}
 
 	@Override
@@ -48,6 +49,7 @@ public class ConHandler implements Runnable {
 					out.write(hasNew);
 					hasNew = 0;
 					out.flush();
+					System.out.println("wrote");
 				}
 				if (in.available() > 0) {
 					Main.newMessage(in.read());
