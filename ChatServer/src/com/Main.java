@@ -2,6 +2,7 @@ package com;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.SocketAddress;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import utils.SqlTools;
 
 public class Main implements Runnable {
 
-	static ArrayList<ConHandler> cons;
+	public static ArrayList<ConHandler> cons;
 
 	@Override
 	public void run() {
@@ -17,7 +18,7 @@ public class Main implements Runnable {
 		try {
 			ss = new ServerSocket(23456);
 			cons = new ArrayList<ConHandler>();
-			while (true) {
+			while (main.Main.running) {
 				try {
 					ConHandler con = new ConHandler(ss.accept());
 					cons.add(con);
@@ -27,6 +28,11 @@ public class Main implements Runnable {
 				}
 				Thread.sleep(300);
 			}
+			
+			for (ConHandler con : cons) {
+				con.stop();
+			}
+			
 		} catch (IOException | InterruptedException e1) {
 			e1.printStackTrace();
 		}
@@ -44,6 +50,14 @@ public class Main implements Runnable {
 	
 	public static void out(Object msg){
 		System.out.println(msg);
+	}
+	
+	public static ArrayList<SocketAddress> getAll(){
+		ArrayList<SocketAddress> all = new ArrayList<>();
+		for (ConHandler con : cons) {
+			all.add(con.getAddress());
+		}
+		return all;
 	}
 	
 	

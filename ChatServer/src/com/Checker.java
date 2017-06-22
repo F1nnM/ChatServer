@@ -1,6 +1,5 @@
 package com;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import utils.SqlTools;
@@ -10,9 +9,8 @@ public class Checker implements Runnable {
 	@Override
 	public void run() {
 		try {
-			while (true) {
+			while (main.Main.running) {
 				Thread.sleep(10000);
-				Main.out("Checking..");
 				ArrayList<ConHandler> conTmp= new ArrayList<>();
 				for (ConHandler con : Main.cons) {
 					if (!(SqlTools.checkOnline(con.getAddress().toString()))) {
@@ -24,8 +22,8 @@ public class Checker implements Runnable {
 				}
 				Main.cons = conTmp;
 			}
-		} catch (InterruptedException | InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+		} catch (InterruptedException e) {
+			main.Main.ErrorQuit(e);
 		}
 
 	}
