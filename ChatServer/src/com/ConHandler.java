@@ -39,7 +39,7 @@ public class ConHandler implements Runnable {
 			while (in.available()<1) {
 			}
 			SqlTools.setIP(in.read(), socket.getRemoteSocketAddress().toString());
-			
+			System.out.println("set IP");
 			while (run) {
 				System.out.flush();
 				if (hasNew==1){
@@ -49,7 +49,7 @@ public class ConHandler implements Runnable {
 					System.out.println("wrote");
 				}
 				if (in.available() > 0) {
-					System.out.println("bla");
+					System.out.println("got stuff");
 					Main.newMessage(in.read());
 				}
 				Thread.sleep(500);
