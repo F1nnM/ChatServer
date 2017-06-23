@@ -39,6 +39,7 @@ public class Main implements Runnable {
 	}
 
 	public static void newMessage(int ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		System.out.println("new");
 		for (ConHandler con : cons) {
 			if (con.getAddress().toString().equals(SqlTools.getIp(ID))){
 				con.newMessage();
