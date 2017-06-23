@@ -9,7 +9,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-			Logger.init();
 			Logger.log("[Main] Started");
 			running = true;
 			SqlTools.c();

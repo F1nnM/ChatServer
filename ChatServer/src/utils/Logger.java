@@ -55,7 +55,7 @@ public class Logger {
 		}
 	}
 	
-	public static void init(){
+	public static void clear(){
 		File x = new File("C://ChatServerLogs", "latest.log");
 		if (x.exists()) x.delete();
 	}
