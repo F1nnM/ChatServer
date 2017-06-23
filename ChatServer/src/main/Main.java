@@ -22,7 +22,6 @@ public class Main {
 			Logger.log("[Main] Checker started");
 			tCons.start();
 			Logger.log("[Main] Console started");
-			System.out.println("Started!");
 		} catch (Exception e) {
 			ErrorQuit(e);
 		}

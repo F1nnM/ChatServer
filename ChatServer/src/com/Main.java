@@ -33,8 +33,8 @@ public class Main implements Runnable {
 				con.stop();
 			}
 			
-		} catch (IOException | InterruptedException e1) {
-			e1.printStackTrace();
+		} catch (Exception e1) {
+			main.Main.ErrorQuit(e1);
 		}
 	}
 
