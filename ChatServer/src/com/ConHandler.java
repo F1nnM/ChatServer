@@ -25,7 +25,6 @@ public class ConHandler implements Runnable {
 
 	public void newMessage() {
 		hasNew = 1;
-		System.out.println("hasNew");
 	}
 
 	@Override
@@ -38,10 +37,8 @@ public class ConHandler implements Runnable {
 			socket.setKeepAlive(true);
 			
 			while (in.available()<1) {
-				Main.out("waiting");
 			}
 			SqlTools.setIP(in.read(), socket.getRemoteSocketAddress().toString());
-			Main.out(socket.getRemoteSocketAddress());
 			
 			while (run) {
 				System.out.flush();
@@ -56,7 +53,6 @@ public class ConHandler implements Runnable {
 				}
 				Thread.sleep(500);
 			}
-			Main.out("Stopped: " + getAddress().toString());
 			
 		} catch (Exception e) {
 			e.printStackTrace();

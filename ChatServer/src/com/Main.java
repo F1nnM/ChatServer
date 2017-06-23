@@ -42,7 +42,6 @@ public class Main implements Runnable {
 		for (ConHandler con : cons) {
 			if (con.getAddress().toString().equals(SqlTools.getIp(ID))){
 				con.newMessage();
-				System.out.println("notified"+con.getAddress().toString());
 				break;
 			}
 		}		

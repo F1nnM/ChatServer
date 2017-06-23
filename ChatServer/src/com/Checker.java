@@ -15,7 +15,6 @@ public class Checker implements Runnable {
 				for (ConHandler con : Main.cons) {
 					if (!(SqlTools.checkOnline(con.getAddress().toString()))) {
 						con.stop();
-						Main.out("disconnected: "+con.getAddress().toString());
 					}else{
 						conTmp.add(con);
 					}
