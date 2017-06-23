@@ -26,7 +26,7 @@ public class Logger {
 		try {
 			// Creating the Date
 			Date Date = new Date();
-			SimpleDateFormat ft = new SimpleDateFormat("HH:mm:ss");
+			SimpleDateFormat ft = new SimpleDateFormat("dd.MM.yy - HH:mm:ss");
 
 			// Creating the DataFolder
 			File dataFolder = new File("C://ChatServerLogs");
@@ -53,5 +53,10 @@ public class Logger {
 		} catch (Exception e) {
 			main.Main.ErrorQuit(e);
 		}
+	}
+	
+	public static void init(){
+		File x = new File("C://ChatServerLogs", "latest.log");
+		if (x.exists()) x.delete();
 	}
 }
