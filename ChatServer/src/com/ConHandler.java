@@ -41,7 +41,6 @@ public class ConHandler implements Runnable {
 			SqlTools.setIP(in.read(), socket.getRemoteSocketAddress().toString());
 			
 			while (run) {
-				System.out.println("spam");
 				System.out.flush();
 				if (hasNew==1){
 					out.write(hasNew);

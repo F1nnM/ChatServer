@@ -1,6 +1,5 @@
 package com;
 
-import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.SocketAddress;
 import java.sql.SQLException;
