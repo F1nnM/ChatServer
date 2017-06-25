@@ -29,13 +29,13 @@ public class Logger {
 			SimpleDateFormat ft = new SimpleDateFormat("dd.MM.yy - HH:mm:ss");
 
 			// Creating the DataFolder
-			File dataFolder = new File("C://ChatServerLogs");
+			File dataFolder = new File("/tmp/ChatServerLogs");
 			if (!dataFolder.exists()) {
 				dataFolder.mkdir();
 			}
 
 			// Creating the output File
-			File saveTo = new File("C://ChatServerLogs", "latest.log");
+			File saveTo = new File("/tmp/ChatServerLogs", "latest.log");
 			if (!saveTo.exists()) {
 				saveTo.createNewFile();
 			}
@@ -56,7 +56,7 @@ public class Logger {
 	}
 	
 	public static void clear(){
-		File x = new File("C://ChatServerLogs", "latest.log");
+		File x = new File("/tmp/ChatServerLogs", "latest.log");
 		if (x.exists()) x.delete();
 	}
 }

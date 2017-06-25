@@ -26,7 +26,7 @@ public class listener implements Runnable {
 		case "logcat":
 			Scanner inputLog;
 			try {
-				inputLog = new Scanner(new File("C:\\ChatServerLogs\\latest.log"));
+				inputLog = new Scanner(new File("/tmp/ChatServerLogs/latest.log"));
 				while (inputLog.hasNextLine()) {
 					System.out.println(inputLog.nextLine());
 				}
@@ -48,6 +48,18 @@ public class listener implements Runnable {
 
 	@Override
 	public void run() {
+		
+		System.out.println("");
+		System.out.println("        __  __     ________     ");
+		System.out.println("       / / / /__  / / / __ \\___ ");
+		System.out.println("      / /_/ / _ \\/ / / /_/ / _ \\");
+		System.out.println("     / __  /  __/ / / ____/  __/");
+		System.out.println("    /_/ /_/\\___/_/_/_/    \\___/ ");
+		System.out.println("");
+		System.out.println("Server for HellPe");
+		System.out.println("");
+		System.out.println("by F.Melzer");
+
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("");
