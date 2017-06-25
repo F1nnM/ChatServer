@@ -38,6 +38,8 @@ public class listener implements Runnable {
 		case "clearlog":
 			Logger.clear();
 			break;
+		case "":
+			break;
 		default:
 			System.out.println("Sorry. I didn't underatand this. Check your spelling or see help for reference.");
 			break;
@@ -52,6 +54,7 @@ public class listener implements Runnable {
 			while (main.Main.running) {
 				System.out.print("> ");
 				exec(br.readLine());
+				Thread.sleep(300);
 			}
 		} catch (Exception e) {
 			main.Main.ErrorQuit(e);

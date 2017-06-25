@@ -46,10 +46,8 @@ public class ConHandler implements Runnable {
 					out.write(hasNew);
 					hasNew = 0;
 					out.flush();
-					System.out.println("wrote");
 				}
 				if (in.available() > 0) {
-					System.out.println("got stuff");
 					Main.newMessage(in.read());
 				}
 				Thread.sleep(500);

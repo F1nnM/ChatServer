@@ -23,7 +23,7 @@ public class Main implements Runnable {
 					cons.add(con);
 					new Thread(con).start();
 				} catch (Exception e) {
-					e.printStackTrace();
+					main.Main.ErrorQuit(e);
 				}
 				Thread.sleep(300);
 			}
@@ -38,7 +38,6 @@ public class Main implements Runnable {
 	}
 
 	public static void newMessage(int ID) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		System.out.println("new");
 		for (ConHandler con : cons) {
 			if (con.getAddress().toString().equals(SqlTools.getIp(ID))){
 				con.newMessage();
