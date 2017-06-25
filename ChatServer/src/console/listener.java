@@ -66,7 +66,6 @@ public class listener implements Runnable {
 			while (main.Main.running) {
 				System.out.print("> ");
 				exec(br.readLine());
-				Thread.sleep(300);
 			}
 		} catch (Exception e) {
 			main.Main.ErrorQuit(e);

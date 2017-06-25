@@ -4,7 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.net.Socket;
 import java.net.SocketAddress;
-
 import utils.SqlTools;
 
 public class ConHandler implements Runnable {
@@ -41,11 +40,10 @@ public class ConHandler implements Runnable {
 			SqlTools.setIP(in.read(), socket.getRemoteSocketAddress().toString());
 			
 			while (run) {
-				System.out.flush();
 				if (hasNew==1){
 					out.write(hasNew);
 					hasNew = 0;
-					out.flush();
+					out.flush();		
 				}
 				if (in.available() > 0) {
 					Main.newMessage(in.read());
@@ -54,7 +52,7 @@ public class ConHandler implements Runnable {
 			}
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			main.Main.ErrorQuit(e);
 		}
 	}
 
