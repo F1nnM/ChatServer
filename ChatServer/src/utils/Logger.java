@@ -13,6 +13,8 @@ import java.util.Date;
  *
  */
 public class Logger {
+	
+	private static String path = "/tmp/ChatServerLogs";
 
 	/**
 	 * This method writes logs
@@ -29,13 +31,13 @@ public class Logger {
 			SimpleDateFormat ft = new SimpleDateFormat("dd.MM.yy - HH:mm:ss");
 
 			// Creating the DataFolder
-			File dataFolder = new File("C:\\ChatServerLogs");
+			File dataFolder = new File(path);
 			if (!dataFolder.exists()) {
 				dataFolder.mkdir();
 			}
 
 			// Creating the output File
-			File saveTo = new File("C:\\ChatServerLogs", "latest.log");
+			File saveTo = new File(path, "latest.log");
 			if (!saveTo.exists()) {
 				saveTo.createNewFile();
 			}
@@ -55,8 +57,41 @@ public class Logger {
 		}
 	}
 	
+	public static void elog(String message) {
+		try {
+			// Creating the Date
+			Date Date = new Date();
+			SimpleDateFormat ft = new SimpleDateFormat("dd.MM.yy - HH:mm:ss");
+
+			// Creating the DataFolder
+			File dataFolder = new File(path);
+			if (!dataFolder.exists()) {
+				dataFolder.mkdir();
+			}
+
+			// Creating the output File
+			File saveTo = new File(path, "latest.log");
+			if (!saveTo.exists()) {
+				saveTo.createNewFile();
+			}
+
+			// Logging the Data with Date and Time
+			FileWriter fw = new FileWriter(saveTo, true);
+
+			PrintWriter pw = new PrintWriter(fw);
+
+			pw.println(ft.format(Date) + "     " + message);
+
+			pw.flush();
+
+			pw.close();
+		} catch (Exception e) {
+			//nothin to do here
+		}
+	}
+	
 	public static void clear(){
-		File x = new File("C:\\ChatServerLogs", "latest.log");
+		File x = new File(path, "latest.log");
 		if (x.exists()) x.delete();
 	}
 }

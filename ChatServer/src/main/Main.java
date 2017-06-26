@@ -33,6 +33,7 @@ public class Main {
 			running = false;
 			SqlTools.d();
 			Thread.sleep(1500);
+			utils.SqlTools.setIP(0, com.Main.getHostIp());
 		} catch (Exception e) {
 			ErrorQuit(e);
 		}
@@ -42,8 +43,8 @@ public class Main {
 
 	public static void ErrorQuit(Exception e) {
 		try {
-			Logger.log("[Main] ERROR: " + e.getMessage());
-			Logger.log("[Main] ForceQuitting...");
+			Logger.elog("[Main] ERROR: " + e.getMessage());
+			Logger.elog("[Main] ForceQuitting...");
 		} catch (Exception e1) {
 			//Nothing I can do about it..
 		}
