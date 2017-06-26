@@ -33,7 +33,7 @@ public class Main {
 			running = false;
 			SqlTools.d();
 			Thread.sleep(1500);
-			utils.SqlTools.setIP(0, com.Main.getHostIp());
+			utils.SqlTools.setIP(0, null);
 		} catch (Exception e) {
 			ErrorQuit(e);
 		}
