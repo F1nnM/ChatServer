@@ -1,6 +1,7 @@
 package main;
 
 import utils.Logger;
+import utils.OS;
 import utils.SqlTools;
 
 public class Main {
@@ -9,6 +10,30 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
+			if (args.length > 0) {
+				Logger.path = args[0];
+			} else {
+				switch (OS.get()) {
+				case OS.OS_LINUX:
+					Logger.path = "/tmp/ChatServerLogs";
+					break;
+				case OS.OS_MACOS:
+					
+					break;
+				case OS.OS_SOLARIS:
+
+					break;
+				case OS.OS_WINDOWS:
+					Logger.path = "C:\\ChatServerLogs";
+					break;
+				case OS.OS_UNDEFINED:
+					ErrorQuit(new Exception("Operating System not recognized. Please enter preferred path for logs as argument"));
+					break;
+				default:
+					ErrorQuit(new Exception("Operating System not supported. Please enter preferred path for logs as argument"));
+					break;
+				}
+			}
 			Logger.log("[Main] Started");
 			running = true;
 			SqlTools.c();
@@ -21,6 +46,7 @@ public class Main {
 			Logger.log("[Main] Checker started");
 			tCons.start();
 			Logger.log("[Main] Console started");
+			utils.SqlTools.setIP(0, com.Main.getHostIp());
 		} catch (Exception e) {
 			ErrorQuit(e);
 		}
@@ -31,9 +57,9 @@ public class Main {
 		try {
 			Logger.log("[Main] Exiting..");
 			running = false;
-			SqlTools.d();
 			Thread.sleep(1500);
 			utils.SqlTools.setIP(0, null);
+			SqlTools.d();
 		} catch (Exception e) {
 			ErrorQuit(e);
 		}
@@ -45,8 +71,9 @@ public class Main {
 		try {
 			Logger.elog("[Main] ERROR: " + e.getMessage());
 			Logger.elog("[Main] ForceQuitting...");
+			e.printStackTrace(System.out);
 		} catch (Exception e1) {
-			//Nothing I can do about it..
+			// Nothing I can do about it..
 		}
 		System.exit(1);
 	}

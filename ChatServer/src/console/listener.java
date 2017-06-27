@@ -26,7 +26,7 @@ public class listener implements Runnable {
 		case "logcat":
 			Scanner inputLog;
 			try {
-				inputLog = new Scanner(new File("/tmp/ChatServerLogs/latest.log"));
+				inputLog = new Scanner(new File(Logger.path+"/latest.log"));
 				while (inputLog.hasNextLine()) {
 					System.out.println(inputLog.nextLine());
 				}

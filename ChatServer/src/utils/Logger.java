@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class Logger {
 	
-	private static String path = "/tmp/ChatServerLogs";
+	public static String path = "/tmp/ChatServerLogs";
 
 	/**
 	 * This method writes logs
